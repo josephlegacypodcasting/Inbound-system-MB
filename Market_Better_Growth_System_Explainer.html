@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Better Growth System — GoHighLevel Blueprint</title>
+<style>
+  :root{
+    --purple: #5B3FE0;
+    --purple-dark: #4329B8;
+    --purple-deep: #2E1D7A;
+    --orange: #FF5A33;
+    --orange-dark: #E04420;
+    --lime: #D7E84A;
+    --cream: #F1EBDF;
+    --cream-2: #EAE2D2;
+    --lavender: #DAD8F6;
+    --lavender-2: #C7C3F2;
+    --ink: #14111F;
+    --ink-soft: #4A4560;
+    --white: #FFFFFF;
+    --line: rgba(20,17,31,0.10);
+    --shadow: 0 10px 30px rgba(20,17,31,0.08);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.5;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Inter', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+
+  /* ===== TOP NAV ===== */
+  .topnav{
+    position:sticky; top:0; z-index:100;
+    background:var(--purple);
+    color:#fff;
+    padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    box-shadow:0 4px 20px rgba(46,29,122,0.25);
+  }
+  .topnav .brand{
+    display:flex; align-items:center; gap:10px;
+    font-weight:800; font-size:18px; letter-spacing:-0.02em;
+  }
+  .topnav .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--lime);}
+  .topnav nav{display:flex; gap:4px; flex-wrap:wrap;}
+  .topnav nav button{
+    background:transparent; border:none; color:rgba(255,255,255,0.78);
+    font-size:13px; font-weight:600; padding:8px 12px; border-radius:8px;
+    cursor:pointer; transition:.15s; font-family:inherit;
+  }
+  .topnav nav button:hover{color:#fff; background:rgba(255,255,255,0.1);}
+  .topnav nav button.active{color:#fff; background:rgba(255,255,255,0.18);}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:var(--purple);
+    color:#fff;
+    padding:80px 28px 96px;
+    position:relative;
+    text-align:center;
+  }
+  .hero-inner{max-width:760px; margin:0 auto; position:relative; z-index:2;}
+  .eyebrow{
+    display:block;
+    color:var(--orange);
+    font-size:13px; font-weight:700; letter-spacing:0.18em;
+    text-transform:uppercase; margin-bottom:28px;
+  }
+  .hero-logo{margin:0 auto 32px; display:block; max-width:180px; width:38%; height:auto;}
+  .hero h1{
+    font-size:clamp(26px, 3.4vw, 32px);
+    line-height:1.35;
+    font-weight:500;
+    color:rgba(255,255,255,0.92);
+    max-width:620px;
+    margin:0 auto 32px;
+    letter-spacing:-0.005em;
+  }
+  .hero p.lead{
+    font-size:17px; line-height:1.6; color:rgba(255,255,255,0.78); max-width:600px; margin:0 auto 40px;
+    font-weight:400;
+  }
+  .hero-ctas{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    border:none; cursor:pointer; font-family:inherit; font-weight:700; font-size:14.5px;
+    padding:14px 26px; border-radius:10px; transition:.15s; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{background:var(--orange); color:#fff;}
+  .btn-primary:hover{background:var(--orange-dark); transform:translateY(-1px);}
+  .btn-ghost{background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.3);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.18);}
+
+  /* stat strip under hero, overlapping */
+  .stat-strip{
+    max-width:980px; margin:-48px auto 0; position:relative; z-index:3;
+    background:#fff; border-radius:18px; box-shadow:var(--shadow);
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:28px 10px;
+  }
+  .stat-strip .stat{text-align:center; padding:10px 8px; border-right:1px solid var(--line);}
+  .stat-strip .stat:last-child{border-right:none;}
+  .stat-strip .stat .num{font-size:30px; font-weight:800; color:var(--purple);}
+  .stat-strip .stat .lbl{font-size:12px; color:var(--ink-soft); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; margin-top:4px;}
+
+  /* ===== SECTION WRAPPER ===== */
+  .section{
+    max-width:980px; margin:0 auto; padding:90px 28px 10px;
+  }
+  .section-head{margin-bottom:36px; max-width:680px;}
+  .section-head .tag{
+    color:var(--orange); font-weight:800; font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .section-head h2{font-size:clamp(26px,3.6vw,36px); margin-bottom:12px;}
+  .section-head p{color:var(--ink-soft); font-size:15.5px;}
+
+  /* ===== JOURNEY DIAGRAM ===== */
+  .journey{
+    display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; justify-content:center;
+    margin:40px 0;
+  }
+  .journey .node{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:18px 16px; min-width:128px; text-align:center; box-shadow:var(--shadow);
+    flex:1 1 128px;
+  }
+  .journey .node .ic{font-size:22px; margin-bottom:8px;}
+  .journey .node .t{font-weight:700; font-size:13.5px;}
+  .journey .arrow{
+    align-self:center; color:var(--orange); font-size:20px; font-weight:900;
+    flex:0 0 auto;
+  }
+  .journey .node.fork{background:var(--lavender); border-color:var(--lavender-2);}
+  .journey .node.end{background:var(--purple); color:#fff; border-color:var(--purple);}
+
+  .plain-explain{
+    background:var(--ink); color:#fff; border-radius:18px; padding:32px 32px;
+    margin:40px 0 0;
+  }
+  .plain-explain h4{color:var(--lime); font-size:13px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;}
+  .plain-explain ol{margin:0; padding-left:20px; color:rgba(255,255,255,0.88); font-size:15px;}
+  .plain-explain li{margin-bottom:8px;}
+
+  /* ===== CALLOUT ===== */
+  .callout{
+    background:var(--lavender); border-left:4px solid var(--purple);
+    border-radius:0 12px 12px 0; padding:18px 22px; font-size:14.5px; color:var(--purple-deep);
+    font-weight:500; margin:24px 0;
+  }
+  .callout.dark{background:var(--ink); color:#fff; border-left-color:var(--lime);}
+  .callout strong{color:var(--purple);}
+  .callout.dark strong{color:var(--lime);}
+
+  /* ===== ACCORDIONS ===== */
+  .accordion{border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:12px; background:#fff;}
+  .accordion summary{
+    list-style:none; cursor:pointer; padding:18px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    font-weight:700; font-size:15.5px;
+  }
+  .accordion summary::-webkit-details-marker{display:none;}
+  .accordion summary .left{display:flex; align-items:center; gap:14px;}
+  .accordion summary .badge{
+    width:34px; height:34px; border-radius:9px; background:var(--lavender); color:var(--purple);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; flex:0 0 auto;
+  }
+  .accordion summary .chev{
+    width:26px; height:26px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex:0 0 auto; transition:.2s;
+    font-size:13px; color:var(--ink-soft);
+  }
+  .accordion[open] summary .chev{transform:rotate(45deg); background:var(--orange); color:#fff; border-color:var(--orange);}
+  .accordion[open] summary{border-bottom:1px solid var(--line);}
+  .accordion .body{padding:6px 22px 22px 70px; font-size:14.5px; color:var(--ink-soft);}
+  .accordion .body p{margin:0 0 10px;}
+  .accordion .body ul{margin:6px 0 14px; padding-left:18px;}
+  .accordion .body li{margin-bottom:5px;}
+  .accordion .purpose{
+    display:inline-block; background:var(--cream-2); color:var(--ink); font-weight:700;
+    font-size:12px; padding:4px 10px; border-radius:6px; margin-bottom:10px;
+  }
+
+  /* pipeline stage chips */
+  .stage-track{display:flex; flex-wrap:wrap; gap:8px; margin:28px 0;}
+  .stage-chip{
+    background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 16px;
+    font-size:13px; font-weight:700; color:var(--ink-soft); cursor:pointer; transition:.15s;
+  }
+  .stage-chip:hover{border-color:var(--purple); color:var(--purple);}
+  .stage-chip.active{background:var(--purple); border-color:var(--purple); color:#fff;}
+
+  /* ===== TABS for modules/workflows ===== */
+  .tabbar{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;}
+  .tab-btn{
+    background:#fff; border:1px solid var(--line); padding:10px 18px; border-radius:10px;
+    font-weight:700; font-size:13.5px; cursor:pointer; color:var(--ink-soft); font-family:inherit;
+    transition:.15s;
+  }
+  .tab-btn:hover{border-color:var(--purple);}
+  .tab-btn.active{background:var(--purple); border-color:var(--purple); color:#fff;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block; animation:fadein .25s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  /* card grid */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px;
+  }
+  .card h4{font-size:14.5px; margin-bottom:8px;}
+  .card p{font-size:13.5px; color:var(--ink-soft); margin:0;}
+  .card .icon{font-size:20px; margin-bottom:10px;}
+
+  /* tags color groups */
+  .tag-pill{
+    display:inline-flex; align-items:center; gap:6px; background:var(--cream-2); border-radius:8px;
+    padding:6px 12px; font-size:12.5px; font-weight:700; font-family:monospace; color:var(--purple-deep);
+    margin:0 6px 6px 0;
+  }
+  .tag-group-title{font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:0.06em; margin:22px 0 10px; color:var(--ink);}
+  .tag-group-title:first-child{margin-top:0;}
+
+  /* workflow steps numbered */
+  .wf-steps{counter-reset:wf; margin:14px 0;}
+  .wf-step{
+    counter-increment:wf; display:flex; gap:14px; padding:10px 0; border-bottom:1px dashed var(--line);
+    font-size:14px; color:var(--ink);
+  }
+  .wf-step:last-child{border-bottom:none;}
+  .wf-step::before{
+    content:counter(wf); flex:0 0 26px; height:26px; border-radius:50%; background:var(--purple);
+    color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+
+  /* timeline for email nurture */
+  .timeline{position:relative; margin:30px 0 10px; padding-left:26px;}
+  .timeline::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .t-item{position:relative; padding-bottom:22px;}
+  .t-item::before{
+    content:""; position:absolute; left:-26px; top:3px; width:14px; height:14px; border-radius:50%;
+    background:var(--orange); border:3px solid var(--cream);
+  }
+  .t-item .when{font-size:11.5px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:0.06em;}
+  .t-item .what{font-weight:700; font-size:14.5px; margin-top:2px;}
+  .t-item .desc{font-size:13px; color:var(--ink-soft); margin-top:2px;}
+
+  /* table-ish for fields */
+  .field-table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .field-table th{
+    text-align:left; padding:10px 14px; background:var(--cream-2); font-size:11.5px;
+    text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); font-weight:800;
+  }
+  .field-table td{padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+  .field-table tr:last-child td{border-bottom:none;}
+  .field-table .fname{font-weight:700; color:var(--purple-deep); font-family:monospace; font-size:12.5px;}
+
+  /* checklist */
+  .checklist{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:8px 18px;}
+  .checklist li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--ink-soft);}
+  .checklist li::before{content:"✓"; flex:0 0 18px; height:18px; border-radius:5px; background:var(--lime);
+    color:var(--ink); font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:1px;}
+
+  /* snapshot include/exclude */
+  .split-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px;}
+  .split-box{border-radius:14px; padding:22px;}
+  .split-box.include{background:rgba(215,232,74,0.18); border:1px solid rgba(168,184,30,0.35);}
+  .split-box.exclude{background:rgba(255,90,51,0.08); border:1px solid rgba(255,90,51,0.3);}
+  .split-box h4{font-size:13px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;}
+  .split-box.include h4{color:#6B7A12;}
+  .split-box.exclude h4{color:var(--orange-dark);}
+  .split-box ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--ink-soft);}
+  .split-box li{margin-bottom:6px;}
+
+  /* operating principles */
+  .principles{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px;}
+  .principle{
+    background:var(--purple); color:#fff; border-radius:14px; padding:18px; font-size:13.5px; font-weight:700;
+    display:flex; align-items:center; gap:10px;
+  }
+  .principle:nth-child(3n+2){background:var(--purple-dark);}
+  .principle:nth-child(3n+3){background:var(--purple-deep);}
+
+  /* deployment steps horizontal */
+  .deploy-track{display:flex; flex-direction:column; gap:0; margin-top:24px;}
+  .deploy-step{display:flex; gap:18px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .deploy-step:last-child{border-bottom:none;}
+  .deploy-num{flex:0 0 36px; height:36px; border-radius:10px; background:var(--cream-2); color:var(--purple);
+    font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .deploy-text{font-size:14.5px; padding-top:6px; font-weight:600;}
+
+  footer{
+    background:var(--ink); color:rgba(255,255,255,0.6); text-align:center; padding:50px 28px 36px;
+    margin-top:100px; font-size:13px;
+  }
+  footer .fbrand{color:#fff; font-weight:800; font-size:16px; margin-bottom:10px;}
+  footer .dot{color:var(--lime);}
+
+  /* responsive */
+  @media (max-width: 760px){
+    .stat-strip{grid-template-columns:repeat(2,1fr);}
+    .stat-strip .stat:nth-child(2){border-right:none;}
+    .grid-3{grid-template-columns:1fr;}
+    .grid-2{grid-template-columns:1fr;}
+    .split-2{grid-template-columns:1fr;}
+    .principles{grid-template-columns:1fr;}
+    .checklist{grid-template-columns:1fr;}
+    .accordion .body{padding-left:22px;}
+    .topnav{flex-direction:column; align-items:flex-start; gap:10px;}
+    .topnav nav{overflow-x:auto; width:100%; padding-bottom:4px;}
+    .journey .arrow{display:none;}
+    .hero{padding:56px 20px 64px;}
+    .hero-logo{max-width:130px; width:42%; margin-bottom:24px;}
+    .hero h1{font-size:22px;}
+    .hero p.lead{font-size:15px;}
+  }
+  @media (max-width: 480px){
+    .hero-logo{max-width:110px; width:46%;}
+    .stat-strip{grid-template-columns:1fr 1fr; padding:20px 6px;}
+    .stat-strip .stat .num{font-size:24px;}
+    .section{padding:64px 18px 10px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="brand"><span class="dot"></span> Market Better <span style="opacity:.6;font-weight:500;">— Growth System</span></div>
+  <nav id="topNav">
+    <button data-go="overview" class="active">Overview</button>
+    <button data-go="journey">Journey</button>
+    <button data-go="pipeline">Pipeline</button>
+    <button data-go="taxonomy">Tags & Fields</button>
+    <button data-go="workflows">Workflows</button>
+    <button data-go="reporting">Reporting</button>
+    <button data-go="snapshot">Snapshot</button>
+    <button data-go="deployment">Deployment</button>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">GoHighLevel Master Snapshot Blueprint</span>
+    <svg class="hero-logo" viewBox="0 0 387 221" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#FFFFFF">
+        <path d="M215.6,26.76h-16.17c-5.89,0-10.68,4.79-10.68,10.68v70.55h15.18V40.16h11.67V26.76z"/>
+        <path d="M346.84,69.89c2.06-2.15,3.12-4.96,2.99-7.93c-0.14-3.21-0.37-5.76-0.71-7.6c-1.09-5.6-3.1-10.51-5.96-14.58
+          c-2.89-4.12-6.87-7.37-11.81-9.65c-4.9-2.26-10.21-3.41-15.77-3.41c-10.11,0-18.73,3.74-25.63,11.11
+          c-6.87,7.34-10.35,17.45-10.35,30.04c0,7.57,1.39,14.53,4.12,20.68c2.78,6.25,7,11.1,12.57,14.43c5.53,3.32,11.88,5,18.87,5
+          c6.23,0,11.89-1.33,16.84-3.96c4.94-2.62,8.92-6.06,11.86-10.25c2.11-3.11,3.87-7.39,5.23-12.72l0.45-1.76h-15.07l-0.35,0.9
+          c-1.96,5.05-4.44,8.66-7.36,10.74c-2.91,2.07-6.77,3.12-11.46,3.12c-3.86,0-7.33-0.92-10.31-2.73c-2.95-1.79-5.16-4.37-6.57-7.66
+          c-1.3-3.03-2.09-6.54-2.34-10.45h42.95C342.01,73.22,344.78,72.04,346.84,69.89z M334.37,60.26h-38.19
+          c0.75-6.06,2.84-10.83,6.23-14.18c3.69-3.65,8.05-5.42,13.32-5.42c5.45,0,9.75,1.7,13.17,5.2
+          C332.04,49.09,333.88,53.92,334.37,60.26z"/>
+        <path d="M127.88,103.53c5.02,2.96,10.45,4.46,16.14,4.46c5.42,0,10.31-1.29,14.52-3.82c2.04-1.24,4-2.92,5.85-5.05
+          v8.87h15.25V27.55h-14.22v8.57c-1.61-1.94-3.38-3.51-5.28-4.67c-4.12-2.59-9.11-3.9-14.81-3.9c-9.12,0-16.76,3.45-22.7,10.24
+          c-6.8,7.79-10.25,18.39-10.25,31.51c0,7.94,1.32,14.93,3.91,20.78C118.91,96.02,122.82,100.55,127.88,103.53z M127.82,68.69
+          c0-9.58,1.82-16.63,5.41-20.94c3.57-4.3,7.91-6.39,13.25-6.39c5.67,0,10.16,2.07,13.73,6.32c3.59,4.27,5.4,11.06,5.4,20.19
+          c0,8.94-1.9,15.64-5.66,19.93c-3.76,4.29-8.39,6.38-14.16,6.38c-5.26,0-9.46-1.95-12.85-5.95
+          C129.55,84.21,127.82,77.63,127.82,68.69z"/>
+        <path d="M306.69,139.76h-16.17c-5.89,0-10.68,4.79-10.68,10.68v70.55h15.18v-67.83h11.67V139.76z"/>
+        <path d="M52.57,145.01c-5.02-2.96-10.45-4.46-16.14-4.46c-5.42,0-10.31,1.29-14.52,3.82c-2.04,1.24-4,2.92-5.85,5.05
+          v-27.03H0.81v98.57h14.22v-8.54c1.61,1.94,3.38,3.51,5.28,4.67c4.12,2.59,9.11,3.9,14.81,3.9c9.12,0,16.76-3.45,22.7-10.24
+          c6.8-7.79,10.25-18.39,10.25-31.51c0-7.94-1.32-14.93-3.91-20.78C61.53,152.52,57.63,147.99,52.57,145.01z M52.62,179.85
+          c0,9.58-1.82,16.63-5.41,20.94c-3.57,4.3-7.91,6.39-13.25,6.39c-5.67,0-10.16-2.07-13.73-6.32c-3.59-4.27-5.4-11.06-5.4-20.19
+          c0-8.94,1.9-15.64,5.66-19.93c3.76-4.29,8.39-6.38,14.16-6.38c5.26,0,9.46,1.95,12.85,5.95C50.9,164.33,52.62,170.91,52.62,179.85
+          z"/>
+        <path d="M137.5,182.92c2.05-2.15,3.12-4.96,2.99-7.92c-0.14-3.2-0.37-5.76-0.71-7.6c-1.09-5.6-3.09-10.5-5.95-14.57
+          c-2.89-4.12-6.86-7.36-11.8-9.64c-4.9-2.26-10.2-3.4-15.76-3.4c-10.11,0-18.72,3.73-25.61,11.1
+          c-6.86,7.34-10.34,17.44-10.34,30.03c0,7.57,1.39,14.52,4.12,20.67c2.77,6.24,7,11.09,12.56,14.43
+          c5.53,3.31,11.88,4.99,18.86,4.99c6.23,0,11.89-1.33,16.83-3.96c4.93-2.62,8.91-6.06,11.85-10.25c2.1-3.11,3.87-7.39,5.23-12.71
+          l0.45-1.76h-15.06l-0.35,0.9c-1.96,5.05-4.43,8.66-7.36,10.74c-2.91,2.07-6.77,3.12-11.45,3.12c-3.86,0-7.32-0.92-10.3-2.72
+          c-2.95-1.79-5.16-4.37-6.57-7.66c-1.3-3.03-2.09-6.54-2.34-10.44h42.93C132.68,186.24,135.44,185.06,137.5,182.92z M125.03,173.28
+          H86.87c0.75-6.06,2.84-10.82,6.22-14.17c3.69-3.65,8.04-5.42,13.31-5.42c5.44,0,9.75,1.7,13.16,5.19
+          C122.71,162.12,124.55,166.96,125.03,173.28z"/>
+        <path d="M273.06,182.92c2.05-2.15,3.12-4.96,2.99-7.92c-0.14-3.21-0.38-5.76-0.71-7.6c-1.09-5.6-3.09-10.5-5.95-14.57
+          c-2.89-4.12-6.86-7.36-11.8-9.64c-4.9-2.26-10.2-3.4-15.76-3.4c-10.11,0-18.72,3.73-25.61,11.1
+          c-6.86,7.34-10.34,17.44-10.34,30.03c0,7.56,1.39,14.52,4.12,20.67c2.77,6.24,7,11.09,12.56,14.43
+          c5.53,3.31,11.88,4.99,18.86,4.99c6.23,0,11.89-1.33,16.83-3.96c4.93-2.62,8.91-6.06,11.85-10.25c2.1-3.11,3.86-7.39,5.23-12.71
+          l0.45-1.76h-15.06l-0.35,0.9c-1.96,5.05-4.43,8.66-7.36,10.74c-2.91,2.07-6.77,3.12-11.46,3.12c-3.86,0-7.32-0.92-10.3-2.72
+          c-2.95-1.79-5.16-4.37-6.57-7.66c-1.3-3.03-2.09-6.54-2.34-10.44h42.93C268.24,186.24,271.01,185.06,273.06,182.92z M260.6,173.28
+          h-38.17c0.75-6.06,2.83-10.82,6.22-14.17c3.69-3.65,8.04-5.42,13.31-5.42c5.44,0,9.75,1.7,13.16,5.19
+          C258.28,162.12,260.11,166.96,260.6,173.28z"/>
+        <path d="M196.87,152.9h11.67v-12.86h-11.67v-17.67h-4.49c-5.9,0-10.69,4.8-10.69,10.69v6.97h-18.71v-17.67h-4.49
+          c-5.9,0-10.69,4.8-10.69,10.69v6.97h-9.9v12.86h9.93v57.41c0,5.89,4.79,10.68,10.68,10.68h16.17v-13.41H163V152.9h18.69v57.41
+          c0,5.89,4.79,10.68,10.68,10.68h16.17v-13.41h-11.67V152.9z"/>
+        <path d="M311.91,202.66c-5.05,0-9.16,4.11-9.16,9.17s4.11,9.16,9.16,9.16s9.17-4.11,9.17-9.16
+          S316.96,202.66,311.91,202.66z"/>
+        <path d="M102.05,35.18c-1.97-2.48-4.81-4.62-8.45-6.38c-3.64-1.76-7.86-2.65-12.54-2.65c-4.95,0-9.34,1.06-13.03,3.16
+          c-3.15,1.79-6.3,4.65-9.39,8.5c-1.28-2.22-2.66-4.05-4.1-5.45c-1.9-1.85-4.39-3.37-7.41-4.51c-2.99-1.13-6.19-1.7-9.49-1.7
+          c-3.42,0-6.65,0.61-9.61,1.83c-2.93,1.2-5.61,2.88-7.98,4.99c-0.92,0.84-1.91,1.89-2.98,3.18V28.5H1.07v79.49h16.01V61.43
+          c0-5.78,1.8-10.76,5.34-14.79c3.54-4.03,7.7-5.99,12.72-5.99c3.55,0,6.16,0.96,8,2.95c1.84,1.99,2.78,5.32,2.78,9.9v54.49h16.01
+          V60.71c0-6.38,1.65-11.38,4.91-14.86c3.28-3.5,7.2-5.2,12-5.2c3.76,0,6.6,1.02,8.68,3.12c2.06,2.08,3.1,5.13,3.1,9.08v55.13h16.37
+          V55.57c0-5.4-0.32-9.41-0.97-12.26C105.35,40.39,104.02,37.65,102.05,35.18z"/>
+        <path d="M256.75,58.79L287.8,28.5h-20.74l-30.87,30.4V0.01h0c-8.49,0-15.37,6.88-15.37,15.37v92.62h15.37V78.38
+          l9.02-8.13l23.63,37.75h19.74L256.75,58.79z"/>
+        <path d="M374.29,39.9h11.9l0-12.86h-11.92V9.37h-4.49c-5.9,0-10.69,4.8-10.69,10.69v6.97h-9.9V39.9h9.93v57.41
+          c0,5.89,4.79,10.68,10.68,10.68h16.17V94.59h-11.67V39.9z"/>
+      </g>
+    </svg>
+    <h1>A GoHighLevel Growth System for Market Better Clients</h1>
+    <p class="lead">From first content touch to closed deal — one Master Snapshot, cloned and customized for every new client launch.</p>
+    <div class="hero-ctas">
+      <a href="#journey" class="btn btn-primary">See how it works</a>
+    </div>
+  </div>
+</header>
+
+<div class="stat-strip">
+  <div class="stat"><div class="num">13</div><div class="lbl">Core Modules</div></div>
+  <div class="stat"><div class="num">11</div><div class="lbl">Pipeline Stages</div></div>
+  <div class="stat"><div class="num">5</div><div class="lbl">Automated Workflows</div></div>
+  <div class="stat"><div class="num">~25min</div><div class="lbl">Target Client Launch</div></div>
+</div>
+
+<!-- ================= OVERVIEW ================= -->
+<section class="section" id="overview">
+  <div class="section-head">
+    <span class="tag">01 — Executive Summary</span>
+    <h2>Not a CRM for one client. A reusable growth engine.</h2>
+    <p>The goal isn't to build a one-off CRM. It's to create a <strong>Master Snapshot</strong> inside GoHighLevel that can be duplicated for every future client — so each new launch takes minutes, not weeks.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><div class="icon">📥</div><h4>Capture</h4><p>Pull leads from content — podcasts, YouTube, LinkedIn, newsletters, webinars, and downloadable resources.</p></div>
+    <div class="card"><div class="icon">🌱</div><h4>Nurture</h4><p>Automatically educate every lead with a structured email sequence before any sales push.</p></div>
+    <div class="card"><div class="icon">🎯</div><h4>Qualify</h4><p>Track engagement to identify which leads are sales-ready and route them accordingly.</p></div>
+    <div class="card"><div class="icon">🔔</div><h4>Notify</h4><p>Alert the internal team the moment a lead shows real buying intent.</p></div>
+    <div class="card"><div class="icon">📊</div><h4>Pipeline</h4><p>Move qualified leads into a structured sales process from first touch to closed deal.</p></div>
+    <div class="card"><div class="icon">♻️</div><h4>Clone</h4><p>Save the entire build as a Snapshot and reuse it for every new client.</p></div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section class="section" id="journey">
+  <div class="section-head">
+    <span class="tag">02 — High-Level Overview</span>
+    <h2>The customer journey, end to end</h2>
+    <p>A person sees content, downloads a resource, enters the CRM, receives helpful follow-up emails, and either becomes a sales opportunity or continues receiving long-term educational content.</p>
+  </div>
+
+  <div class="journey">
+    <div class="node"><div class="ic">🎙️</div><div class="t">Content</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="ic">🖥️</div><div class="t">Landing Page</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="ic">📝</div><div class="t">Opt-In Form</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="ic">🗂️</div><div class="t">GHL CRM</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="ic">📧</div><div class="t">Email Nurture</div></div>
+    <div class="arrow">→</div>
+    <div class="node fork"><div class="ic">🤔</div><div class="t">CTA Click Decision</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="ic">💬</div><div class="t">Sales or Nurture</div></div>
+    <div class="arrow">→</div>
+    <div class="node end"><div class="ic">🤝</div><div class="t">Customer</div></div>
+  </div>
+
+  <div class="plain-explain">
+    <h4>In plain terms, for the team</h4>
+    <ol>
+      <li>We create content.</li>
+      <li>People click a CTA.</li>
+      <li>They land on a page.</li>
+      <li>They download a resource.</li>
+      <li>GHL captures the lead.</li>
+      <li>The lead receives helpful emails.</li>
+      <li>If they show interest, sales is notified.</li>
+      <li>If they're not ready, they stay in nurture.</li>
+      <li>When they book a call, the sales pipeline begins.</li>
+      <li>When the system works, we save it as a Snapshot — then clone it for every new client.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= MAIN OBJECTIVE + MODULES ================= -->
+<section class="section" id="modules">
+  <div class="section-head">
+    <span class="tag">03 — Main Objective</span>
+    <h2>Build once. Update only what's client-specific.</h2>
+    <p>For each new client, the team only needs to swap branding, logo, colors, domain, lead magnet, copy, calendar links, notifications, and reporting settings — everything else is already built.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><h4>1. CRM</h4><p>Central contact record</p></div>
+    <div class="card"><h4>2. Pipeline</h4><p>Lead → customer stages</p></div>
+    <div class="card"><h4>3. Tags</h4><p>Behavior & segmentation</p></div>
+    <div class="card"><h4>4. Custom Fields</h4><p>Structured lead data</p></div>
+    <div class="card"><h4>5. Forms</h4><p>First point of conversion</p></div>
+    <div class="card"><h4>6. Landing Pages</h4><p>Built externally, connected to GHL</p></div>
+    <div class="card"><h4>7. Email Templates</h4><p>Reusable, personalized</p></div>
+    <div class="card"><h4>8. Workflows</h4><p>5 automated sequences</p></div>
+    <div class="card"><h4>9. Calendar / Booking</h4><p>Connected to sales process</p></div>
+    <div class="card"><h4>10. Internal Notifications</h4><p>Slack, email, GHL tasks</p></div>
+    <div class="card"><h4>11. Long-Term Nurture</h4><p>For leads not yet ready</p></div>
+    <div class="card"><h4>12. Reporting</h4><p>What's working, what's not</p></div>
+    <div class="card"><h4>13. Snapshot Deployment</h4><p>Clone-ready packaging</p></div>
+  </div>
+</section>
+
+<!-- ================= PIPELINE ================= -->
+<section class="section" id="pipeline">
+  <div class="section-head">
+    <span class="tag">04 — Pipeline</span>
+    <h2>Inbound Content Funnel</h2>
+    <p>Tracks the movement of a lead from first conversion to sales opportunity. Click a stage to see its purpose.</p>
+  </div>
+
+  <div class="stage-track" id="stageTrack"></div>
+  <div id="stageDetail" class="card" style="margin-top:6px;"></div>
+</section>
+
+<!-- ================= TAGS & FIELDS ================= -->
+<section class="section" id="taxonomy">
+  <div class="section-head">
+    <span class="tag">05 — Tags & Custom Fields</span>
+    <h2>How the system describes a lead</h2>
+    <p><strong>Rule of thumb:</strong> Tags describe behavior or segmentation. Custom fields store information. Pipeline stages describe where the lead is in the process. The three are never used for the exact same purpose.</p>
+  </div>
+
+  <div class="tabbar" id="tagTabs">
+    <button class="tab-btn active" data-tab="t-source">Source Tags</button>
+    <button class="tab-btn" data-tab="t-magnet">Lead Magnet Tags</button>
+    <button class="tab-btn" data-tab="t-status">Status Tags</button>
+    <button class="tab-btn" data-tab="t-engage">Engagement Tags</button>
+    <button class="tab-btn" data-tab="t-fields">Custom Fields</button>
+  </div>
+
+  <div class="tab-panel active" id="t-source">
+    <div class="callout"><strong>Purpose:</strong> Identify the channel a lead came from.</div>
+    <span class="tag-pill">source_youtube</span><span class="tag-pill">source_linkedin</span><span class="tag-pill">source_podcast</span><span class="tag-pill">source_blog</span><span class="tag-pill">source_newsletter</span><span class="tag-pill">source_webinar</span><span class="tag-pill">source_referral</span>
+  </div>
+
+  <div class="tab-panel" id="t-magnet">
+    <div class="callout"><strong>Purpose:</strong> Identify which resource the lead downloaded or registered for.</div>
+    <span class="tag-pill">lead_magnet_ai_matrix</span><span class="tag-pill">lead_magnet_checklist</span><span class="tag-pill">lead_magnet_playbook</span><span class="tag-pill">lead_magnet_webinar</span><span class="tag-pill">lead_magnet_report</span>
+  </div>
+
+  <div class="tab-panel" id="t-status">
+    <div class="callout"><strong>Purpose:</strong> Describe the general state of the contact.</div>
+    <span class="tag-pill">status_new_lead</span><span class="tag-pill">status_nurture_active</span><span class="tag-pill">status_cta_clicked</span><span class="tag-pill">status_sales_lead</span><span class="tag-pill">status_customer</span><span class="tag-pill">status_long_term_nurture</span>
+  </div>
+
+  <div class="tab-panel" id="t-engage">
+    <div class="callout"><strong>Purpose:</strong> Show what type of content or action the lead interacted with.</div>
+    <span class="tag-pill">engaged_email_click</span><span class="tag-pill">engaged_blog_click</span><span class="tag-pill">engaged_video_click</span><span class="tag-pill">engaged_webinar</span><span class="tag-pill">engaged_calendar</span>
+  </div>
+
+  <div class="tab-panel" id="t-fields">
+    <table class="field-table">
+      <thead><tr><th>Field</th><th>Stores</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="fname">Lead Source</td><td>Original channel (YouTube, LinkedIn, Podcast…)</td><td>Shows which channels generate the most leads</td></tr>
+        <tr><td class="fname">Lead Magnet Downloaded</td><td>Specific resource downloaded</td><td>Personalizes follow-up, shows which assets perform</td></tr>
+        <tr><td class="fname">CTA Clicked</td><td>True / False</td><td>Separates passive from active leads</td></tr>
+        <tr><td class="fname">CTA URL</td><td>The exact link clicked</td><td>A pricing click signals more intent than a blog click</td></tr>
+        <tr><td class="fname">Last Engagement Date</td><td>Most recent interaction date</td><td>Prioritizes fresh follow-up</td></tr>
+        <tr><td class="fname">Company Name / Website</td><td>Firmographic data</td><td>Needed for sales research & qualification</td></tr>
+        <tr><td class="fname">Podcast Name</td><td>Lead's own podcast, if applicable</td><td>Useful for podcast-growth clients</td></tr>
+        <tr><td class="fname">Interest Level</td><td>Cold / Warm / Hot</td><td>Helps the team prioritize who to call first</td></tr>
+        <tr><td class="fname">Lifecycle Stage</td><td>Subscriber → Lead → MQL → SQL → Opportunity → Customer → Evangelist</td><td>Broader view than pipeline stage alone</td></tr>
+        <tr><td class="fname">Client Plan</td><td>Starter / Growth / Scale / Enterprise / Custom</td><td>Used once the lead becomes a customer</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= FORMS & LANDING PAGES ================= -->
+<section class="section" id="capture">
+  <div class="section-head">
+    <span class="tag">06 — Forms & Landing Pages</span>
+    <h2>The first point of conversion</h2>
+    <p>Keep the form short — more fields reduce conversion. Landing pages are built externally (Claude, Codex, Webflow, Framer, WordPress, or custom code) and connected to a GHL form, so GHL stays the backend CRM and automation engine without limiting design flexibility.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>Form fields</h4>
+      <p><strong>Required:</strong> First Name, Email, Company Name<br><strong>Optional:</strong> Website, Podcast Name</p>
+    </div>
+    <div class="card">
+      <h4>On submission, GHL automatically…</h4>
+      <p>Creates/updates the contact → tags source & lead magnet → updates custom fields → creates an opportunity → moves it to "Lead Magnet Downloaded" → sends Email 1 → notifies the internal team → starts the nurture workflow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKFLOWS ================= -->
+<section class="section" id="workflows">
+  <div class="section-head">
+    <span class="tag">07 — Automated Workflows</span>
+    <h2>The five engines that run the system</h2>
+    <p>Each workflow has one clear job. Select one to see its trigger and actions.</p>
+  </div>
+
+  <div class="tabbar" id="wfTabs">
+    <button class="tab-btn active" data-tab="wf1">1. Lead Capture</button>
+    <button class="tab-btn" data-tab="wf2">2. Email Nurture</button>
+    <button class="tab-btn" data-tab="wf3">3. CTA Clicked</button>
+    <button class="tab-btn" data-tab="wf4">4. Long-Term Nurture</button>
+    <button class="tab-btn" data-tab="wf5">5. Booking Flow</button>
+  </div>
+
+  <div class="tab-panel active" id="wf1">
+    <div class="callout"><strong>Purpose:</strong> Capture the lead, store their info, send the first email, notify the team.</div>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-bottom:6px;"><strong>Trigger:</strong> Form Submitted — AI Selection Matrix Opt-In Form</p>
+    <div class="wf-steps">
+      <div class="wf-step">Create or update contact</div>
+      <div class="wf-step">Add tag: status_new_lead</div>
+      <div class="wf-step">Add tag: lead_magnet_ai_matrix</div>
+      <div class="wf-step">Add source tag</div>
+      <div class="wf-step">Update custom field: Lead Magnet Downloaded</div>
+      <div class="wf-step">Update custom field: Lead Source</div>
+      <div class="wf-step">Create opportunity</div>
+      <div class="wf-step">Move opportunity to "Lead Magnet Downloaded"</div>
+      <div class="wf-step">Send Email 1 (deliver the resource)</div>
+      <div class="wf-step">Notify internal team via Slack</div>
+      <div class="wf-step">Notify internal team via email</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="wf2">
+    <div class="callout"><strong>Purpose:</strong> Educate the lead after download. The goal is not to chase the PDF — it's to help the lead apply the resource and gradually introduce Market Better as the solution.</div>
+    <div class="timeline">
+      <div class="t-item"><div class="when">Day 0 — Immediately</div><div class="what">Email 1: Deliver the resource</div></div>
+      <div class="t-item"><div class="when">Day 2</div><div class="what">Email 2: How to use the resource</div></div>
+      <div class="t-item"><div class="when">Day 5</div><div class="what">Email 3: Common mistakes / practical framework</div></div>
+      <div class="t-item"><div class="when">Day 8</div><div class="what">Email 4: Case study or strategic insight</div></div>
+      <div class="t-item"><div class="when">Day 12</div><div class="what">Email 5: Soft CTA to book a call</div></div>
+      <div class="t-item"><div class="when">Day 17</div><div class="what">Email 6: Move to newsletter / long-term nurture</div></div>
+    </div>
+    <div class="callout">Total nurture duration: <strong>~17 days.</strong> If a CTA is clicked at any point → move to <strong>Sales Lead Created</strong>. If not → move to <strong>Long-Term Nurture</strong>.</div>
+  </div>
+
+  <div class="tab-panel" id="wf3">
+    <div class="callout"><strong>Purpose:</strong> Identify buying intent and treat that lead differently from a passive one.</div>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-bottom:6px;"><strong>Trigger options:</strong> Email link clicked · Landing page CTA clicked · Booking page visited · Services/Pricing page visited · Reply received</p>
+    <div class="wf-steps">
+      <div class="wf-step">Add tag: status_cta_clicked</div>
+      <div class="wf-step">Add tag: engaged_email_click</div>
+      <div class="wf-step">Update custom field: CTA Clicked = True</div>
+      <div class="wf-step">Update custom field: CTA URL</div>
+      <div class="wf-step">Update custom field: Last Engagement Date</div>
+      <div class="wf-step">Move opportunity to "CTA Clicked"</div>
+      <div class="wf-step">Create sales task</div>
+      <div class="wf-step">Notify internal team</div>
+      <div class="wf-step">Send booking link if appropriate</div>
+    </div>
+    <div class="callout dark">
+      <strong>Internal notification example:</strong><br>
+      High-intent lead detected.<br>
+      Name: {{contact.full_name}} · Email: {{contact.email}} · Company: {{contact.company_name}}<br>
+      CTA Clicked: {{contact.cta_url}} · Source: {{contact.lead_source}} · Lead Magnet: {{contact.lead_magnet_downloaded}}<br>
+      Recommended Action: Review contact and decide whether to follow up.
+    </div>
+  </div>
+
+  <div class="tab-panel" id="wf4">
+    <div class="callout"><strong>Purpose:</strong> Not every lead is ready to buy immediately — keep them engaged over time.</div>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-bottom:6px;"><strong>Trigger:</strong> Nurture sequence completed AND no CTA clicked AND no booking created</p>
+    <div class="wf-steps">
+      <div class="wf-step">Add tag: status_long_term_nurture</div>
+      <div class="wf-step">Move opportunity to "Long-Term Nurture"</div>
+      <div class="wf-step">Add contact to newsletter list</div>
+      <div class="wf-step">Send monthly/weekly educational content</div>
+      <div class="wf-step">Monitor future engagement</div>
+    </div>
+    <p style="font-size:13.5px;"><strong>Content ideas:</strong> Newsletter, podcast episodes, webinars, case studies, AI marketing insights, demand generation frameworks, revenue marketing tips.</p>
+  </div>
+
+  <div class="tab-panel" id="wf5">
+    <div class="callout"><strong>Purpose:</strong> Manage the sales call process once a meeting is booked.</div>
+    <div class="grid-3">
+      <div class="card">
+        <h4>Appointment Booked</h4>
+        <p>Move to Discovery Booked → tag engaged_calendar → send confirmation + invite + reminders → notify team.</p>
+      </div>
+      <div class="card">
+        <h4>Appointment No-Show</h4>
+        <p>Move to No Show → send reschedule email → notify team → create follow-up task.</p>
+      </div>
+      <div class="card">
+        <h4>Appointment Completed</h4>
+        <p>Move to Discovery Completed → create follow-up task → notify team → prepare proposal if qualified.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTERNAL NOTIFICATIONS ================= -->
+<section class="section" id="notifications">
+  <div class="section-head">
+    <span class="tag">08 — Internal Notifications</span>
+    <h2>So the team can act quickly</h2>
+    <p>Notifications fire on: a new lead captured, a CTA clicked, a meeting booked, a meeting missed, a discovery call completed, a proposal sent, or a deal won — across Slack, internal email, and GHL tasks.</p>
+  </div>
+  <ul class="checklist">
+    <li>Lead name & email</li>
+    <li>Company & website</li>
+    <li>Lead source & lead magnet</li>
+    <li>CTA clicked</li>
+    <li>Pipeline stage</li>
+    <li>Contact record link</li>
+    <li>Opportunity link</li>
+    <li>Recommended next action</li>
+  </ul>
+</section>
+
+<!-- ================= REPORTING ================= -->
+<section class="section" id="reporting">
+  <div class="section-head">
+    <span class="tag">09 — Reporting</span>
+    <h2>Knowing what's actually working</h2>
+    <p>The dashboard should answer real attribution questions, not just display vanity metrics.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>Key metrics tracked</h4>
+      <p>Leads by source · landing page conversion · form submission rate · email open/click rate · CTA click rate · discovery calls booked & completed · no-show rate · proposal sent rate · close rate · revenue · time-to-call · time-to-close.</p>
+    </div>
+    <div class="card">
+      <h4>Attribution questions to answer</h4>
+      <p>Which channel generates the most leads? Which lead magnet converts best? Which emails drive the most CTA clicks? Which source creates the most booked calls and the most customers? Where are leads dropping off?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SNAPSHOT ================= -->
+<section class="section" id="snapshot">
+  <div class="section-head">
+    <span class="tag">10 — Snapshot Structure</span>
+    <h2>What gets cloned vs. what gets customized</h2>
+    <p>Once the system is built and tested, it's saved as the <strong>Market Better Master Snapshot</strong>.</p>
+  </div>
+
+  <div class="split-2">
+    <div class="split-box include">
+      <h4>✓ Included in the Snapshot</h4>
+      <ul>
+        <li>Pipeline</li>
+        <li>Tags</li>
+        <li>Custom Fields</li>
+        <li>Forms</li>
+        <li>Email templates</li>
+        <li>Workflows</li>
+        <li>Calendars</li>
+        <li>Notification templates</li>
+        <li>Basic reporting structure</li>
+      </ul>
+    </div>
+    <div class="split-box exclude">
+      <h4>✗ Customized per client</h4>
+      <ul>
+        <li>Client logo</li>
+        <li>Client domain</li>
+        <li>Client calendar owner</li>
+        <li>Client-specific offer</li>
+        <li>Client-specific lead magnet (PDF)</li>
+        <li>Client-specific pricing</li>
+        <li>Client-specific testimonials & case studies</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPLOYMENT ================= -->
+<section class="section" id="deployment">
+  <div class="section-head">
+    <span class="tag">11 — Client Deployment Process</span>
+    <h2>From subaccount to launch in ~25 minutes</h2>
+    <p>Target deployment time: <strong>15–30 minutes</strong> once client assets are ready.</p>
+  </div>
+
+  <div class="deploy-track">
+    <div class="deploy-step"><div class="deploy-num">1</div><div class="deploy-text">Create new GHL subaccount</div></div>
+    <div class="deploy-step"><div class="deploy-num">2</div><div class="deploy-text">Apply Market Better Master Snapshot</div></div>
+    <div class="deploy-step"><div class="deploy-num">3</div><div class="deploy-text">Update business information</div></div>
+    <div class="deploy-step"><div class="deploy-num">4</div><div class="deploy-text">Add client logo and brand colors</div></div>
+    <div class="deploy-step"><div class="deploy-num">5</div><div class="deploy-text">Connect client domain</div></div>
+    <div class="deploy-step"><div class="deploy-num">6</div><div class="deploy-text">Upload lead magnet</div></div>
+    <div class="deploy-step"><div class="deploy-num">7</div><div class="deploy-text">Update landing page copy</div></div>
+    <div class="deploy-step"><div class="deploy-num">8</div><div class="deploy-text">Update email copy</div></div>
+    <div class="deploy-step"><div class="deploy-num">9</div><div class="deploy-text">Connect calendar</div></div>
+    <div class="deploy-step"><div class="deploy-num">10</div><div class="deploy-text">Update internal notifications</div></div>
+    <div class="deploy-step"><div class="deploy-num">11</div><div class="deploy-text">Test form submission</div></div>
+    <div class="deploy-step"><div class="deploy-num">12</div><div class="deploy-text">Test email delivery</div></div>
+    <div class="deploy-step"><div class="deploy-num">13</div><div class="deploy-text">Test CTA click tracking</div></div>
+    <div class="deploy-step"><div class="deploy-num">14</div><div class="deploy-text">Test booking workflow</div></div>
+    <div class="deploy-step"><div class="deploy-num">15</div><div class="deploy-text"><strong>Launch</strong></div></div>
+  </div>
+
+  <div class="section-head" style="margin-top:50px;">
+    <span class="tag">Required assets per client</span>
+    <h2 style="font-size:24px;">What we need before we can launch</h2>
+  </div>
+  <ul class="checklist">
+    <li>Logo & brand colors</li>
+    <li>Domain</li>
+    <li>Lead magnet</li>
+    <li>Landing page headline & copy</li>
+    <li>Primary CTA</li>
+    <li>Booking link</li>
+    <li>Sales contact</li>
+    <li>Notification recipients</li>
+    <li>Email sender name & address</li>
+    <li>Client offer</li>
+    <li>Client calendar</li>
+    <li>Basic reporting requirements</li>
+  </ul>
+</section>
+
+<!-- ================= PRINCIPLES ================= -->
+<section class="section" id="principles">
+  <div class="section-head">
+    <span class="tag">12 — Operating Principles</span>
+    <h2>What guides every build decision</h2>
+  </div>
+  <div class="principles">
+    <div class="principle">⚡ Simple before complex</div>
+    <div class="principle">♻️ Reusable before custom</div>
+    <div class="principle">🎓 Education before selling</div>
+    <div class="principle">🤖 Automated but human-aware</div>
+    <div class="principle">🗂️ Clear data structure</div>
+    <div class="principle">🚫 No duplicate tags</div>
+    <div class="principle">🎯 No unnecessary fields</div>
+    <div class="principle">✅ Every workflow has a clear purpose</div>
+    <div class="principle">📋 Every notification includes next action</div>
+  </div>
+</section>
+
+<!-- ================= FINAL VISION ================= -->
+<section class="section" id="vision" style="padding-bottom:70px;">
+  <div class="callout dark" style="font-size:16px; padding:32px;">
+    <strong style="display:block; margin-bottom:8px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase;">Final Vision</strong>
+    A repeatable growth engine for Market Better clients — a scalable operating system that turns content into leads, leads into conversations, and conversations into customers.
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">market better<span class="dot">.</span></div>
+  GoHighLevel Master Snapshot Blueprint · Version 1.0 · Prepared for Anna McCoy / Market Better Team
+</footer>
+
+<script>
+  // Top nav scroll + active state
+  const navMap = {
+    overview:'overview', journey:'journey', pipeline:'pipeline', taxonomy:'taxonomy',
+    workflows:'workflows', reporting:'reporting', snapshot:'snapshot', deployment:'deployment'
+  };
+  document.querySelectorAll('#topNav button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#topNav button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const id = navMap[btn.dataset.go];
+      document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // Generic tab system
+  function setupTabs(barId, panelSelectorPrefix){
+    const bar = document.getElementById(barId);
+    if(!bar) return;
+    bar.querySelectorAll('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        bar.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        bar.parentElement.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  }
+  setupTabs('tagTabs');
+  setupTabs('wfTabs');
+
+  // Pipeline stage chips
+  const stages = [
+    {n:"New Lead", p:"The first stage when a contact enters the system — via form submission, manual import, or another integration. The person is now in the CRM but hasn't taken meaningful action beyond initial capture."},
+    {n:"Lead Magnet Downloaded", p:"The lead downloaded a resource — an AI Selection Matrix, checklist, playbook, webinar, report, or guide. This identifies which content asset generated the lead."},
+    {n:"Nurture Active", p:"The lead is currently receiving the email nurture sequence — being educated before being pushed toward sales."},
+    {n:"CTA Clicked", p:"The lead clicked an important call-to-action: scheduling a call, viewing services, visiting pricing, or replying to an email. This identifies buying intent."},
+    {n:"Sales Lead Created", p:"The lead has shown enough intent to be reviewed by the sales team — separating general marketing leads from leads ready for a conversation."},
+    {n:"Discovery Booked", p:"The lead booked a call. This stage tracks scheduled sales conversations."},
+    {n:"Discovery Completed", p:"The discovery call happened. This moves the lead into the next sales step."},
+    {n:"Proposal Sent", p:"A proposal, quote, or next-step offer was sent. This tracks active commercial opportunities."},
+    {n:"Closed Won", p:"The lead became a customer. This stage tracks revenue and successful conversions."},
+    {n:"Closed Lost", p:"The opportunity did not convert. This tracks lost deals and helps the team understand why they didn't close."},
+    {n:"Long-Term Nurture", p:"The lead isn't ready to buy yet but should keep receiving content — so the team doesn't lose leads who may become ready later."}
+  ];
+  const track = document.getElementById('stageTrack');
+  const detail = document.getElementById('stageDetail');
+  stages.forEach((s,i)=>{
+    const chip = document.createElement('button');
+    chip.className = 'stage-chip' + (i===0?' active':'');
+    chip.textContent = (i+1) + '. ' + s.n;
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.stage-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      renderStage(i);
+    });
+    track.appendChild(chip);
+  });
+  function renderStage(i){
+    detail.innerHTML = `<h4 style="margin-bottom:8px;">${i+1}. ${stages[i].n}</h4><p>${stages[i].p}</p>`;
+  }
+  renderStage(0);
+</script>
+
+</body>
+</html>
